@@ -1,0 +1,107 @@
+            //Main Program
+            /*Model one
+            Senthil*/
+            string[] nameList = new string[10];
+            nameList[0] = "One";
+            nameList[1] = "Two";
+            nameList[2] = "Three";
+            int number=Convert.ToInt16("123");
+            string numberString=Convert.ToString(number);
+            Console.WriteLine(numberString);
+            Testclass2 object1=new Testclass2();
+            Console.WriteLine(object1.GetMessage());
+            try
+            {
+                IEnumerable<string> result = from s in nameList  select s;
+                foreach (string name in result)
+                {
+                    Console.WriteLine(name);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+        }
+    }
+    
+    public class Testclass2
+    {
+        public string GetMessage()
+        {
+            return "Hello World!";
+        }
+    }
+	
+	            List<string> nameList=new List<string>();
+            nameList.Add("One");
+            nameList.Add("Two");
+            nameList.Add("Three");
+            var results=from temp in nameList select temp;
+            foreach (string name in results)
+            {
+                Console.WriteLine(name);
+            }
+            List<string> final=results;
+            Console.WriteLine(final);
+			
+			
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Testnamespace
+{
+    public class Testclass1
+    {
+        public static void Main(string[] args)
+        {
+            Solution values = new Solution();
+            int[] results = new int[2];
+            int[] input = new int[] { 2, 3, 5, 1, 6, 7 };
+            results = values.TwoSum(input, 6);
+            Console.WriteLine(results[0] + "," + results[1]);
+        }
+    }
+
+    public class Solution
+    {
+        public int[] TwoSum(int[] nums, int target)
+        {
+            //int[] results = new int[2];
+            try
+            {
+                for (int i = 0; i < nums.Length - 1; i++)
+                {
+                    for (int j = i + 1; j < nums.Length-1; j++)
+                    {
+                        if (nums[i] + nums[j] == target)
+                        {
+                            //results[0] = i;
+                            //results[1] = j;
+                            //return results;
+                            return new[] { i,j};
+                        }
+                    }
+                }
+                //throw new Exception ("Indexes not found");
+                return new[]{ 0,0};
+            }
+            catch (Exception exec)
+            {
+                Console.WriteLine(exec.Message);
+                //return results;
+            }
+        }
+    }
+
+}
+
+	    Hashtable values=new Hashtable();
+            values.Add("123","Senthil");
+            values.Add("345","Sathish");
+            foreach (string key in values.Keys)
+            {
+                Console.WriteLine("Values: " + values[key]);
+            }

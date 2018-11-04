@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.Text;
+
+namespace FibonacciNS
+{
+    class Fibonacci
+    {
+
+        public static int Compute(int number, Hashtable memo)
+        {
+            //return number;
+            Console.WriteLine(number);
+            if (number == 0 || number == 1) return number;
+            if (!memo.Contains(number))
+            {
+                memo.Add(number, (Compute(number - 1, memo) + Compute(number - 2, memo)));
+            }
+            return (int)memo[number];
+        }
+
+        static void Main(string[] args)
+        {
+            Hashtable values = new Hashtable();
+            Console.WriteLine("Enter a number to get the Fibonacci series:");
+            int number = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Results: " + Compute(number, values));
+        }
+    }
+}

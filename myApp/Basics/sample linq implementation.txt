@@ -1,0 +1,15 @@
+using System;
+using System.Linq;
+
+class Solution
+{
+    public static void Main()
+    {
+        string[] list={"Hello","yes","yesno","no"};
+        var result=from l in list
+            where l.Contains("yes")
+            select l;
+        foreach(string a in result)
+            Console.WriteLine("Matched string:" + a);
+    }
+}

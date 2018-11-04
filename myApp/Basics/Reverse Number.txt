@@ -1,0 +1,63 @@
+using System;
+using System.Collections;
+using System.Text.RegularExpressions;
+
+namespace TestModule
+{
+    public class TestClass
+    {
+        public static void Main()
+        {
+            long number = -123;
+            long result = ReverseNumber(number);
+            Console.WriteLine("Reversed number is: " + result);
+        }
+
+        static long ReverseNumber(long number)
+        {
+            string temp = Convert.ToString(number);
+            string output = "";
+            string operatorCharacter = "";
+            for (int i = temp.Length; i > 0; i--)
+            {
+                if (Regex.IsMatch(temp.Substring(i - 1, 1), @"(\d+)"))
+                    output = output + temp.Substring(i - 1, 1);
+                else operatorCharacter = temp.Substring(i - 1, 1);
+            }
+            return Convert.ToInt32(operatorCharacter+output);
+            
+        }
+    }
+}
+
+Alternative: (But this fails for negative numbers)
+
+using System;
+using System.Collections;
+
+namespace TestModule
+{
+    public class TestClass
+    {
+        public static void Main()
+        {
+            int number = 123;
+            int result = ReverseNumber(number);
+            Console.WriteLine("Reversed number is: " + result);
+        }
+
+        static int ReverseNumber(int number)
+        {
+            int reverseNum=0;
+            int workingNum=number;
+            int temp;
+            while (workingNum>0)
+            {
+                temp=workingNum%10;
+                reverseNum=reverseNum*10+temp;
+                workingNum=workingNum/10;
+            }
+            return reverseNum;
+        }
+    }
+}

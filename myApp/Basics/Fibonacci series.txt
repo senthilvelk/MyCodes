@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace FibonacciNS
+{
+    class Fibonacci
+    {
+        public static int Compute(int number)
+        {
+            if (number==0) return 0;
+            if (number==1) return 1;
+            return Compute(number-1) + Compute(number-2);
+        }
+        
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter number:");
+            int number=Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(Compute(number));
+            
+        }
+    }
+}

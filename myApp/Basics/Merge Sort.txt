@@ -1,0 +1,105 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace MergeSort
+{
+    class MergeSort
+    {
+        static public void MainMerge(int[] numbers, int left, int mid, int right)
+        {
+            //Compute size of left and right array
+            int n1 = mid + 1 - left;
+            int n2 = right - mid;
+
+            //Create new arrays with the size got from the previous steps
+            int[] lt = new int[n1];
+            int[] rt = new int[n2];
+
+            //Initialize the indicators
+            int i=0, j= 0;
+
+            //Copy the values from main array to the left and right arrays
+            for (i = 0; i < n1; i++)
+                lt[i] = numbers[left+i];
+            for (j = 0; j < n2; j++)
+                rt[j] = numbers[mid + 1 + j];
+
+            //Reinitialize the indicators
+            i = 0;
+            j = 0;
+
+            //Initialize main array indicator to left value- starting index to write to the main array
+            int k = left;
+
+            while(i<n1 && j<n2)
+            {
+                if (lt[i]<=rt[j])
+                {
+                    numbers[k] = lt[i];
+                    i++;
+                }
+                else
+                {
+                    numbers[k] = rt[j];
+                    j++;
+                }
+                k++;
+            }
+
+            //Write remaining left values to the main array
+            while(i<n1)
+            {
+                numbers[k] = lt[i];
+                i++;
+                k++;
+            }
+
+            //Write remaining right values to the main array
+            while (j < n2)
+            {
+                numbers[k] = rt[j];
+                j++;
+                k++;
+            }
+        }
+        static public void SortMerge(int[] numbers, int left, int right)
+        {
+            int mid = 0;
+
+            //Only split if there are ateast two elements, hence left<right
+            if (left < right)
+            {
+                mid = (left + right) / 2;
+                SortMerge(numbers, left, mid);
+                SortMerge(numbers, mid + 1, right);
+                MainMerge(numbers, left, mid, right);
+            }
+        }
+        static void Main(string[] args)
+        {
+            Console.Write("\nProgram for sorting a numeric array using Merge Sorting");
+            Console.Write("\n\nEnter number of elements: ");
+            int max = Convert.ToInt32(Console.ReadLine());
+            int[] numbers = new int[max];
+            for (int i = 0; i < max; i++)
+            {
+                Console.Write("\nEnter [" + (i + 1).ToString() + "] element: ");
+                numbers[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.Write("Input int array : ");
+            Console.Write("\n");
+            for (int k = 0; k < max; k++)
+            {
+                Console.Write(numbers[k] + " ");
+                Console.Write("\n");
+            }
+            Console.WriteLine("MergeSort By Recursive Method");
+            SortMerge(numbers, 0, max - 1);
+            for (int i = 0; i < max; i++)
+                Console.WriteLine(numbers[i]);
+            Console.ReadLine();
+        }
+    }
+}

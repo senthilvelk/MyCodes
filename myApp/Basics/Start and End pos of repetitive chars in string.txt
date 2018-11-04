@@ -1,0 +1,71 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace TestNS
+{
+    public class WorkItem
+    {
+        public char character { get; set; }
+        public int startpos { get; set; }
+        public int endpos { get; set; }
+        public WorkItem(char character,int startpos,int endpos)
+        {
+            this.character = character;
+            this.startpos = startpos;
+            this.endpos = endpos;
+        }
+        
+        public string Search(char character)
+        {
+            if (character == this.character) return Convert.ToString(this.character);
+            else return null;
+        }
+    }
+
+    public class Program
+    {
+        public static void Main()
+        {
+            Console.WriteLine("Enter string:");
+            string input = Console.ReadLine();
+            List<WorkItem> list = new List<WorkItem>();
+            Compute(input,ref list);
+            foreach(WorkItem item in list)
+            {
+                Console.WriteLine("{0},{1},{2}",item.character,item.startpos,item.endpos);
+            }
+        }
+
+        public static void Compute(string input,ref List<WorkItem> list)
+        {
+            int startpos = 0, endpos = 0;
+            bool flagfirst = false, recordfound = false;
+            char[] inputchar = input.ToCharArray();
+            WorkItem work = null;
+            for(int i=0;i< inputchar.Length;i++)
+            {
+                for(int j=i;j<inputchar.Length;j++)
+                {
+                    if(inputchar[i]== inputchar[j])
+                    {
+                        if (!flagfirst)
+                        {
+                            flagfirst = true;
+                            startpos = j;
+                        }
+                        endpos = j;
+                    }
+                }
+                flagfirst = false;
+                work = new WorkItem(inputchar[i], startpos, endpos);
+                //if (!list.Find(Predicate<WorkItem>(inputchar[i])))
+                IEnumerable<char> result = from s in list where s.character == inputchar[i] select s.character;
+                foreach (char item in result) recordfound = true;
+                if (!recordfound )list.Add(new WorkItem(inputchar[i], startpos, endpos));
+                recordfound = false;
+            }
+        }
+    }
+}
