@@ -1,0 +1,22 @@
+using System;
+using System.Collections;
+
+namespace TestModule
+{
+    public class TestClass
+    {
+        public static void Main()
+        {
+            ArrayList alist=new ArrayList();
+            alist.Add(1);
+            alist.Add(2);
+            alist.Add(3);
+            foreach(int number in alist)
+                Console.WriteLine(number);
+            Console.WriteLine("Capacity: {0}",alist.Capacity);
+            Console.WriteLine("Count: {0}",alist.Count);
+            //for(i-0;i<alist.Count;i++)
+                Console.WriteLine(alist.IndexOf(3));
+        }
+    }
+}    

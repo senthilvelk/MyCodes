@@ -1,0 +1,42 @@
+using System;
+
+static class StringHelper
+{
+    /// <summary>
+    /// Receives string and returns the string with its letters reversed.
+    /// </summary>
+    public const int MAX = 10;
+
+    public static void BubbleSort(ref int[] result)
+    {
+        // return new int[] { 1, 2, 3, 4, 5 };
+        //int[] result = input;
+        int temp = 0;
+        for (int i = 0; i < result.Length; i++)
+        {
+            for (int j = i + 1; j < result.Length; j++)
+            {
+                if (result[i] > result[j])
+                {
+                    temp = result[i];
+                    result[i] = result[j];
+                    result[j] = temp;
+                }
+                else continue;
+            }
+        }
+        // return result;
+    }
+
+    static void Main()
+    {
+        int[] input = new int[MAX] { 2, 44, 1, 6, 9, 33, 6, 2, 1, 90 };
+        // int[] output = 
+        BubbleSort(ref input);
+        for (int i = 0; i < input.Length; i++)
+        {
+            //if (output[i] != null)
+            Console.WriteLine("Value{0}: {1}", i, input[i]);
+        }
+    }
+}

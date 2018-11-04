@@ -1,0 +1,25 @@
+using System;
+using System.Collections;
+using System.Text;
+
+namespace TestModule
+{
+    public class TestClass
+    {
+        public static void Main()
+        {
+            StringBuilder name = new StringBuilder("Hi.");
+            name.Append("Hello ");
+            name.Append("World!!!");
+            name.Replace("!", "--");
+            name.Insert(name.ToString().IndexOf("o"), "0");
+            name.Remove(name.ToString().IndexOf("o"), 1);
+            Console.WriteLine("Value: {0}", name.ToString());
+
+            string test = "Welcome";
+            //int result = test.CompareTo("namaste");
+            string result=test.Replace("come", "l wish!");
+            Console.WriteLine("Final string: {0}", result);
+        }
+    }
+}

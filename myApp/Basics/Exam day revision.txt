@@ -1,0 +1,83 @@
+using System;
+using System.Linq;
+
+class Solution
+{
+    public static void Main()
+    {
+        string[] list={"Hello","yes","yesno","no"};
+        var result=from l in list
+            where l.Contains("yes")
+            select l;
+        foreach(string a in result)
+            Console.WriteLine("Matched string:" + a);
+    }
+}
+
+------------------------------------------------------------------
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Collections;
+
+class Test
+{
+    public static void Main()
+    {
+        try
+        {
+            List<DataStore> ilist=new List<DataStore>();
+            ilist.Add(new DataStore(1,"Ravi"));
+            ilist.Add(new DataStore(2,"Samu"));
+            IEnumerable<int> result=from n in ilist
+                where n.name.Contains("Samu")
+                select n.sno;
+            foreach(int value in result)
+            {
+                Console.WriteLine("Value: " + Convert.ToString(value));
+            }
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.StackTrace);
+        }
+    }
+    
+    public class DataStore
+    {
+        public int sno{get;set;}
+        public string name{get;set;}
+        
+        public DataStore(int sno,string name)
+        {
+            this.sno=sno;
+            this.name=name;
+        }
+    }
+}
+
+--------------------------------------------------------------
+
+using System;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+
+class Solution
+{
+    public static void Main()
+    {
+        Hashtable table=new Hashtable();
+        table.Add(1,"Hello");
+        table.Add(2,"Welcome");
+        foreach(int keys in table.Keys)
+        {
+            Console.WriteLine("Value: " + table[keys]);
+        }
+    }
+}
+
+-----------------------------------------------------------------
+
+

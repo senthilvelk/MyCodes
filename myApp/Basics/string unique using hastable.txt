@@ -1,0 +1,32 @@
+using System;
+using System.Collections;
+using System.Text;
+
+namespace TestModule
+{
+    public class TestClass
+    {
+        public static void Main()
+        {
+            string name="facebok";
+            // IsUnique(name);
+            Console.WriteLine(" Result: {0}",IsUnique(name));
+        }
+        public static string IsUnique(string input)
+        {
+            try{
+                Hashtable ht=new Hashtable();
+                for(int i=0;i<input.Length;i++)
+                {
+                    ht.Add(input.Substring(i,1),i);
+                }
+                return "Unique";
+            }
+            catch(Exception ex)
+            {return "Not Unique";}
+            
+            // foreach(string key in ht.Keys)
+                // Console.WriteLine(ht[key]);
+        }
+    }
+}    
